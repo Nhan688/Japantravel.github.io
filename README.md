@@ -1,0 +1,1 @@
+# Japantravel.github.io
