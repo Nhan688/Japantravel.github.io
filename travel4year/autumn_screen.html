@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #navbar {
+      overflow: hidden;
+      background-color: #ffffff;
+      background-image: url('image/bg_spring.jpg');
+      background-size: cover;
+      padding: 80px 10px;
+      transition: 0.4s;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 99;
+    }
+
+    #navbar a {
+      float: left;
+      color: black;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      line-height: 25px;
+      border-radius: 4px;
+    }
+
+    #navbar #logo {
+      font-size: 35px;
+      font-weight: bold;
+      transition: 0.4s;
+    }
+
+    #navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    #navbar a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+
+    #navbar-right {
+      float: right;
+    }
+
+    .header {
+      width: 100%;
+      background-color: #555;
+      overflow: auto;
+    }
+
+    /* Navbar links */
+    .header a {
+      float: left;
+      text-align: center;
+      padding: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    /* Navbar links on mouse-over */
+    .header a:hover {
+      background-color: #000;
+    }
+
+    /*login*/
+    .open-button {
+      background-color: #555;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .form-popup {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    @media screen and (max-width: 580px) {
+      #navbar {
+        padding: 20px 10px !important;
+      }
+
+      #navbar a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+
+      #navbar-right {
+        float: none;
+      }
+    }
+
+    .tablink {
+      background-color: #555;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      width: 25%;
+    }
+
+    .tabbodylink {
+      background-color: rgb(59, 21, 225);
+      color: white;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      width: 50%;
+    }
+
+    /* Change background color of buttons on hover */
+    .tablink:hover {
+      background-color: rgb(28, 233, 17);
+    }
+
+    .tabbodylink:hover {
+      background-color: rgb(228, 8, 151);
+    }
+
+    /* Set default styles for tab content */
+    .tabcontent {
+      color: black;
+      display: none;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .tabbodycontent {
+      color: black;
+      display: none;
+      padding: 100px 20px;
+      height: 100%;
+    }
+
+    /* Style each tab content individually */
+    #Spring {
+      background-color: #FFCCBC;
+    }
+
+    #Summer {
+      background-color: #e2eb75;
+    }
+
+    #Autumn {
+      background-color: #ec949e;
+    }
+
+    #Winter {
+      background-color: #f5f5f5;
+    }
+
+    #Place {
+      background-color: white;
+    }
+
+    #Food {
+      background-color: white;
+    }
+    /*chinh common-main, content*/
+#common-main {
+  width: 65.55556%;
+  padding: 100 20 100 20;
+  border: 100 10 100 10;
+  position: relative;
+ 
+  
+}
+@media (min-width: 1281px){
+  #common-main {
+    width: 767px;
+    margin-right: 58px;
+    margin-bottom: 92px;
+    position: relative;
+   
+}
+}
+#content {
+  background: #f9f9f9;
+  border: 1px solid #aaaaaa;
+  width: 100%;
+}
+#content {
+  background: #f9f9f9;
+  border: 1px solid #aaa;
+  padding: 10px;
+  margin-bottom: 1em;
+  width: auto;
+  display: table;
+  font-size: 95%;
+}
+h2 {
+  font-size: 50px;
+  padding: 11px 0 10px 16px;
+  margin-left: -4px;
+  margin-bottom: 29px;
+  position: relative;
+  border-left: solid 10px #FFE200;
+}
+</style>
+</head>
+
+<body>
+
+  <div id="navbar">
+    <a href="splash_screen.html" id="logo"><img src="image/logo.png" width="250px" height="100px" alt="logo"></a>
+    <div id="navbar-right">
+      <a class="active" href="#VIE">VIE</a>
+      <a href="#JA">JA</a>
+      <a href="#ENG">ENG</a>
+    </div>
+  </div>
+  <div style="margin-top:210px;font-size:30px;background-color: #FFCCBC">
+    <div class="header">
+      <div id="Spring" class="tabcontent">
+        <h1>Spring</h1>
+        <p>Mùa xuân thường rơi vào tháng 3 đến tháng 5 ở Nhật Bản. “Sakura” hay hoa anh đào là biểu tượng của mùa xuân ở Nhật Bản. Nhiều người tụ tập dưới tán cây anh đào trong lễ hội “ohanami”, nghĩa là ngắm hoa anh đào khắp nơi trên nước Nhật. Địa hình nước Nhật trải dài từ Bắc xuống Nam. Hoa anh đào bắt đầu nở ở phía Nam vào cuối tháng 3 rồi di chuyển dần lên phía Bắc. Hokkaido, nằm ở phía Bắt Nhật Bản chào đón hoa anh đào vào tháng 5. Mùa xuân với thời tiết dễ chịu, thích hợp cho nhiều hoạt động giải trí khác nhau.
+
+          Hoa tử đằng, hoa rêu hồng và nhiều loại hoa khác ngoài sakura cũng nở vào mùa xuân. Hoa là điểm thu hút du khách nhưng đồng thời cũng đóng vai trò như biển báo dẫn đường.</p>
+      </div>
+
+      <div id="Summer" class="tabcontent">
+        <h1>Summer</h1>
+        <p>Mùa hè thường bắt đầu từ tháng 6 đến tháng 8. Nhật Bản được biển bao bọc xung quanh nên quý khách có thể tham gia hoạt động bơi lội ở nhiều nơi. Quý khách có thể bơi ở bãi biển gần Tokyo nhưng các hòn đảo ở xa của Okinawa cũng đón chào du khách đến tận hưởng thời gian thư giãn.
+
+          Khi mùa mưa, còn gọi là “tsuyu”, kéo dài từ tháng 6 đáng cuối tháng 7 kết thúc, nhiệt độ sẽ tăng nhanh. Đây là mùa của lễ hội mùa hè và pháo hoa diễn ra khắp Nhật Bản. Quý khách có thể ngắm nhìn lễ hội hoặc tham gia nhảy múa tại các lễ hội khác.</p>
+      </div>
+
+      <div id="Autumn" class="tabcontent">
+        <h1>Autumn</h1>
+        <p>Mùa thu thường kéo dài từ tháng 9 đến tháng 11. Khi nhiệt độ mùa hè giảm đi cũng là lúc mùa có không khí dễ chịu và thoải mái nhất đến. Thời gian lá đổi màu cao điểm diễn ra từ tháng 10 đến cuối tháng 11. Những ngọn núi ở Hokkaido bắt đầu chuyển sắc và lá chuyển màu dần từ Bắc xuống Nam Nhật Bản. Hãy đếm thăm những điểm thu hút du khách ở khắp Nhật Bản nổi tiếng với tán lá chuyển màu và chìm trong cảm giác vui thích giữa màu sắc.</p>
+      </div>
+
+      <div id="Winter" class="tabcontent">
+        <h1>Winter</h1>
+        <p>Mùa đông bắt đầu từ tháng 12 đến tháng 2. Đây là mùa lạnh nhất trong năm, hoàn hảo để tận hưởng trong những suối nước nóng. Đắm mình vào suối nước nóng trong khi thưởng thức cảnh đẹp mùa đông là trải nghiệm đặc biệt khác thường. Những sự kiện chiếu sáng được tổ chức khắp Nhật Bản cho đến cuối năm.</p>
+      </div>
+
+      <button class="tablink" onclick="location.href='spring_screen.html'">Spring</button>
+      <button class="tablink" onclick="location.href='summer_screen.html'">Summer</button>
+      <button class="tablink" id="defaultOpen"
+        onclick="openTypeHeader('Autumn', this, '#ec949e','url(\'image/bg_autumn.jpg\')')">Autumn</button>
+      <button class="tablink" onclick="location.href='winter_screen.html'">Winter</button>
+
+    </div>
+  </div>
+
+  <div style="margin-top:0px;padding:0px 0px 2500px;font-size:30px;" id="bodyselect">
+
+    <button class="tabbodylink" id="defaultBodyOpen" onclick="openPage('Place', this, 'red')">Place</button>
+    <button class="tabbodylink" onclick="openPage('Food', this, 'green')" >Food</button>
+    <div id="Place" class="tabbodycontent">
+      <div class="common-main">
+        <section class="common-single">
+          <h1>日本の理想的な春の目的地を 15 か所紹介します</h1>
+          <div class="content">
+            <p>
+              <img src="" alt="">
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="1_Kousanji">1. Kousanji</span></h2>
+            <p>Kousanji được biết đến là địa điểm ngắm lá đỏ đẹp nhất tỉnh Hyogo với cảnh chùa cổ kính nhuộm màu áo đỏ khi thu về. Ngồi từ điện chính của chùa nhìn ra vườn, một bức tranh mùa thu đẹp mơ màng hiện ngay trước mắt bạn. Đừng bỏ qua địa điểm ngắm lá đỏ đẹp tuyệt vời tại chùa Kousan (高山寺) nhé.</p>
+            <p><img src="image/Kousanji.png" alt="Kousanji" ></p>
+            <p>
+            </p>
+            <p>
+              Website:&nbsp; <a href="www.hyogo-tourism.jp/spot/">www.hyogo-tourism.jp/spot/</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="2_Shinrinshokubutsu-en">2. Ngắm lá đỏ tại rừng thực vật Kobe</span></h2>
+            <p>Vườn rừng thực vật Kobe (神戸市立森林植物園) đã đỏ rực rồi các bạn nhé! Cuối tuần này thời tiết rất đẹp và đây cũng là thời điểm lý tưởng để đi ngắm lá đỏ tại đây. Ngắm cảnh đẹp mê hồn của một rừng lá đỏ xung quanh hồ nước hay picnic dưới các tán cây đổi màu sang thu sẽ thư thái, giúp bạn lấy lại năng lượng sau một tuần làm việc vất vả.</p>
+            <p><img src="image/Shinrinshokubutsu.png" alt="Shinrin shokubutsu-en" width="640" height="427"></p>
+            <p>
+      
+            </p>
+            <p>
+              Website:&nbsp; <a href="https://www.kobe-park.or.jp">https://www.kobe-park.or.jp</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="3_Kogenji">3. chùa Kogenji</span></h2>
+            <p>Kogenji (高原時) là ngôi chùa lịch sử của giáo phái Zen được biết đến không chỉ lịch sử lâu đời của ngôi chùa này mà còn rất nổi tiếng với lá vàng lá đỏ mùa thu ở tỉnh Hyogo cũng như vùng Kansai tại Nhật Bản. Tại đây có rất nhiều loại lá đỏ như lá phong, lá momiji và đặc biệt có loại lá phong đỏ cỡ lớn được cho là mang giống cây từ Hàng Châu Trung Quốc về trồng. Có thể nói nơi đây tụ hội rất nhiều loại cây lá đỏ đẹp của mùa thu Nhật Bản.</p>
+            <p><img src="image/Kogenji.png" alt="Kogenji" width="640" height="427"></p>
+            <p>
+              Trong đợt lễ hội mùa thu từ đầu tháng 11 đến hết tháng 11, tại chùa Kogenji sẽ được thắp đèn sáng light-up rất đẹp. Cả ngôi chùa rực đỏ dưới ánh đèn và màu của lá đỏ mùa thu.
+            </p>
+            <p>
+              Website:&nbsp; <a href="www.kougenji-tanba.or.jp/">www.kougenji-tanba.or.jp/</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="4_Hyōgokenritsu Flower Center">4. Hyōgokenritsu Flower Center</span></h2>
+            <p> Hyogokenritsu Flower Center là một trong những công viên có vườn hoa và cây xanh tốt nhất trong cả nước, trong đó có tới 46 hecta là rừng thông tự nhiên. Con đường Momijibahu rợp bóng cây được trồng ở hai bên con đường chính sẽ được nhuộm đỏ rực khi mùa thu về. Thời điểm ngắm lá đỏ đẹp nhất tại đây là tháng 11.
+            </p>
+            <p><img src="image/HyōgokenritsuFlowerCenter.png" alt="Hyōgokenritsu Flower Center" width="640" height="427"></p>
+            <p>
+             
+            </p>
+            <p>
+              Website:&nbsp; <a href= "www.hyogo-park.or.jp/flower-center/"> www.hyogo-park.or.jp/flower-center/</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="5_Byakugōji">5. Byakugōji</span></h2>
+            <p>Chùa Byakugo (白毫寺) có tới hơn 1,300 năm lịch sử. Trong khu vực ngôi chùa rộng lớn có một cái hồ hình trái tim với một cây cầu Taiko, kết nối thế giới của con người và thế giới của Đức Phật. Ngôi chùa này nổi tiếng với hoa anh đào vào mùa xuân, hoa từ đẳng đẹp nổi tiếng cả nước và khi mùa thu về cả ngôi chùa nhuộm màu lá đỏ đẹp như tranh vẽ.</p>
+            <p><img src="image/Byakugōji.png" alt="Byakugōji" width="640" height="427"></p>
+            <p>
+            
+            </p>
+            <p>
+              Website:&nbsp; <a href=" www.byakugouji.jp/"> www.byakugouji.jp/</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="6_HOTOKUJI">6. HOTOKUJI Ở GUNMA
+            </span></h2>
+            <p>
+              Một địa điểm ngắm lá đỏ rất đẹp tại vùng Kanto đó chính là chùa Hotokuji tại tỉnh Gunma. Ngôi chùa cổ kính Zen ở thành phố Kiryu tỉnh Gunma được xây dựng bởi Chúa Masatsuna Kiryu Sano, một lãnh chúa phong kiến ​​trong thời Muromachi.</p>
+              Mùa thu năm nay, ngoài lá đỏ tuyệt đẹp 🍁, phía ngoài vường còn dược trang trí thêm những chiếc ô màu sắc rực rỡ với màu sắc chủ đạo là đỏ-hồng-cam-vàng.
+            <p><img src="image/HOTOKUJI_1.png" alt="HOTOKUJI_1" width="640" height="427"> <img src="image/HOTOKUJI.png" alt="HOTOKUJI" width="640" height="427"></p>
+            <p>
+              Vào khoảng giữa tháng 11 hàng năm, hơn 100 cây momiji lá đỏ trong khuôn viên chuyển sang màu đỏ rực rỡ. Bạn cũng có thể đi ngắm lá đỏ ở khu vực núi xung quanh chùa cũng rất đẹp. Triển lãm đặc biệt “hình ảnh phản chiếu của lá momiji mùa thu” sẽ diễn ra từ giữa tháng 11, thời điểm đẹp nhất để ngắm lá đỏ mùa thu tại chùa Hotokuji.
+            </p>
+            <p>
+              Website:&nbsp; <a href="www.houtokuji.jp/reflection-autumn.html">www.houtokuji.jp/reflection-autumn.html</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="7_YMUSE-PARK CHICHIBU">7. MUSE-PARK CHICHIBU</span></h2>
+            <p> Một trong những địa điểm ngắm lá vàng lá đỏ đẹp nhất ở Saitama đó chính là công viên MUSE ở Chichibu. Muse-park không chỉ là một công viên với nhiều khu vui chơi giải trí hấp dẫn với các bạn nhỏ mà còn là địa điểm lý tưởng để bạn picnic ngày cuối tuần cùng gia đình trong tiết trời thu se lạnh với cảnh đẹp mê đắm lòng người.</p>
+            <p><img src="image/MUSEPARKCHICHIBU.png" alt="MUSE-PARK CHICHIBU" width="640" height="427"></p>
+            <p>
+              Từ giữa tháng 10 hàng cây Icho bắt đầu ngả vàng dần và đẹp nhất là vào cuối tháng 10. Chỉ cần đi bộ dọc theo hàng cây icho này thôi là bạn đã có thể đắm mình vào mùa thu Nhật Bản rồi đó.
+            </p>
+            <p>
+              Website:&nbsp; <a href="www.muse-park.com">www.muse-park.com</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="8_Kawachi Fujien Wisteria Garden">8. Kawachi Fujien Wisteria Garden</span></h2>
+            <p> Nếu bạn muốn thưởng thức hoa mùa xuân ngoài hoa anh đào, bạn nên đến thăm vườn hoa Tử Đằng Kawachi ở tỉnh Fukuoka. Khu vườn chào đón du khách với khung cảnh hùng vĩ được tạo nên bởi hàng ngàn bông hoa Tử Đằng. Chúng có nhiều màu sắc bao gồm tím, trắng và hồng, tạo ra một sự tương phản vô cùng đẹp mắt cùng với thiên nhiên xung quanh.</p>
+            <p><img src="image/yoshido.png" alt="yoshido" width="640" height="427"></p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="9_SHIROYAMA">9. CÔNG VIÊN SHIROYAMA TẠI TỈNH TOCHIGI
+            </span></h2>
+            <p>Công viên Shiroyama tỉnh Tochigi là một trong những địa điểm nổi tiếng ngắm hoa bỉ ngạn khi mùa thu về. Hoa bỉ ngạn tại đây mọc tự nhiên phủ kín cả quả đồi trong công viên. Hoa bỉ ngạn tàn khá nhanh nên nếu bạn có dự định đi ngắm hãy đi sớm từ cuối tháng 9 tới đầu tháng 10 nhé.</p>
+            <p><img src="image/SHIROYAMA.png" alt="SHIROYAMA" width="640" height="427"></p>
+            <p>
+              Địa điểm của lâu đài Motegi (lâu đài Kikyo) trong thời kỳ Kamakura. Từ ngọn đồi nhỏ trong công viên, bạn có thể nhìn thấy trung tâm thị trấn và những đầu máy hơi nước đang chạy ở phía xa. Công viên này nổi tiếng với hoa anh đào mùa xuân và đỏ rực rỡ với hoa bỉ ngạn khi mùa thu về.
+              Ngoài ra, trong công viên còn có khu vực bãi cỏ và khu vui chơi cho trẻ em rất phong phú. Vì vậy, gia đình bạn có thể tận hưởng cả một ngày tại đây để picnic dã ngoại mà các bạn nhỏ cũng có thể vui chơi thỏa thích.
+
+            </p>
+            <p>
+              Website:&nbsp; <a href="http://www.town.motegi.tochigi.jp">http://www.town.motegi.tochigi.jp</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="10_Arashi-yama">10. Arashi-yama</span></h2>
+            <p>Arashiyama là địa điểm tham quan được yêu thích với hoa anh đào, cảnh đẹp thiên nhiên quanh năm. Lá đỏ ở đây cũng không phải là ngoại lệ. Vào mùa lá đỏ, toàn bộ khu vực Arashiyama sẽ được nhuộm màu đỏ hoặc vàng, phong cảnh được phản chiếu trên mặt nước còn lộng lẫy hơn nữa.
+              Cây cầu Togetsukyo trên nền phong cảnh núi Arashiyama, chùa Tenryuji- di sản văn hoá thế giới hay toà tháp cao 12m được bao quanh bởi lá đỏ momiji... là những địa điểm ngắm lá đỏ tuyệt đẹp.</p>
+            <p><img src="image/Arashi-yama.png" alt="Arashi-yama" width="640" height="427"></p>
+            <p>
+              Arashiyama là địa điểm tham quan được yêu thích với hoa anh đào, cảnh đẹp thiên nhiên quanh năm. Lá đỏ ở đây cũng không phải là ngoại lệ. Vào mùa lá đỏ, toàn bộ khu vực Arashiyama sẽ được nhuộm màu đỏ hoặc vàng, phong cảnh được phản chiếu trên mặt nước còn lộng lẫy hơn nữa.
+Cây cầu Togetsukyo trên nền phong cảnh núi Arashiyama, chùa Tenryuji- di sản văn hoá thế giới hay toà tháp cao 12m được bao quanh bởi lá đỏ momiji... là những địa điểm ngắm lá đỏ tuyệt đẹp.
+            </p>
+            <p>
+              Website:&nbsp; <a href="https://www.google.co.jp/maps/place/Saga-Arashiyama+Station/@35.018781,135.6789924,17z/data=!3m1!4b1!4m5!3m4!1s0x6001a9fe9bfe5279:0x1259413423edf0d9!8m2!3d35.018781!4d135.6811811">Arashi-yama (ga Saga Arashi-yama)</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="11_Tetsugaku No Michi (哲学の道)">11. Tetsugaku No Michi (哲学の道)</span></h2>
+            <p>Từ chùa bạc Ginkaku, theo hướng Eikando và Nanzenj, con đường Triết học dài khoảng 1.5 Km. Có một con kênh (sosui) chạy dọc theo con đường, vào mùa thu, hàng cây chạy dọc con kênh nhuộm màu lộng lẫy cho nơi đây .</p>
+            <p><img src="image/TetsugakuNoMichi.png" alt="Tetsugaku No Michi (哲学の道)" width="640" height="427"></p>
+            <p>
+              Vào thời điểm cuối mùa lá đỏ, lá cây vàng- đỏ rụng dưới chân tạo nên một tấm thảm tuyệt đẹp trải dài cả tuyến đường khiến ta cứ muốn đi dạo mãi thôi. Khi bạn tham quan những đến chùa nơi đây đừng quên tản bộ trên con đường này nhé.
+            </p>
+            <p>
+              Website:&nbsp; <a href="https://www.google.com/maps/place/Tetsugaku+No+Michi,+Sakyo+Ward,+Kyoto/@35.0214532,135.7942948,17z/data=!3m1!4b1!4m5!3m4!1s0x600109047190580b:0xb5b4bbf7a7ea5827!8m2!3d35.0214532!4d135.7942948">Tetsugaku No Michi (哲学の道)</a>
+            </p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <h2><span id="12_Mizutani chaya">12. Mizutani chaya</span></h2>
+            <p> Quán trà Miyuza (水谷 茶屋) nằm trong khuôn viên công viên Nara Kasugano, đây là một quán trà theo phong cách truyền thống Nhật Bản với cách trang trí tinh tế và đậm chất hoài cổ. Vào mùa thu, không gian quán trở nên rực rỡ dưới màu lá thu đỏ vàng, cùng với những chú nai vàng xinh xắn của công viên, khung cảnh nơi đây trở nên thật đẹp đẽ và đầy chất thơ. Hệt như một bức tranh phong cảnh minh họa cho thơ Haiku ấy nhỉ?
+
+              Mùa thu có lẽ là thời khắc đẹp nhất để bạn tận hưởng tách trà nóng và say sưa với những bản nhạc thiền tĩnh tâm, tự tại ở quán</p>
+            <p><img src="image/mizutanichaya.png" alt="Mizutani chaya" width="640" height="427"></p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="Food" class="tabbodycontent">
+      <div class="common-main">
+        <section class="common-single">
+          <h1>日本の理想的な春の目的地を 15 か所紹介します</h1>
+          <div class="content">
+            <p>
+              <img src="" alt="">
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="1_Kousanji">1. Kousanji</span></h2>
+            <p>Kawazuzakura (河津 ザ ク ラ) là một loại hoa anh đào cụ thể có thể được nhìn thấy ở khu vực Kawazu nằm trên bán đảo Izu thuộc tỉnh Shizuoka. Nó được biết đến như một loài hoa anh đào nở sớm, và những bông hoa xinh đẹp của nó bắt đầu nở từ đầu tháng 2. Hoa có cánh hoa lớn có màu hồng đậm.</p>
+            <p><img src="image/Kousanji.png" alt="Kousanji" ></p>
+            <p>
+              河津川沿いでは、毎年2月上旬から3月上旬にかけて河津桜まつりが開催され、何百万人もの観光客が訪れます。川沿いに約800本の桜が咲き誇る人気イベントがあります。
+            </p>
+            <p>
+              Website:&nbsp; <a href="http://kawazuzakura.info/">http://kawazuzakura.info/</a>
+            </p>
+            <p>&nbsp;</p>
+          </div>
+        </section>
+      </div>
+
+  </div>
+
+  <div class="form-popup" id="myForm">
+    <form action="#" class="form-container">
+      <h1>Contact</h1>
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Name" name="name" required>
+
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+
+      <label for="comment"><b>Comment</b></label>
+      <input type="text" placeholder="Comment" name="Comment" required>
+
+
+
+      <button type="submit" class="btn">Send</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+
+  <script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        document.getElementById("navbar").style.padding = "30px 10px";
+        document.getElementById("logo").style.fontSize = "25px";
+      } else {
+        document.getElementById("navbar").style.padding = "80px 10px";
+        document.getElementById("logo").style.fontSize = "35px";
+      }
+    }
+
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+
+    function openTypeHeader(cityName, elmnt, color, image) {
+      // Hide all elements with class="tabcontent" by default */
+      var i, tabcontent, tablinks, headerurl;
+      tabcontent = document.getElementsByClassName("tabcontent");
+
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Remove the background color of all tablinks/buttons
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.color = "#ffffff";
+      }
+
+      // Show the specific tab content
+      document.getElementById(cityName).style.display = "block";
+
+      // Add the specific color to the button used to open the tab content
+      elmnt.style.backgroundColor = color;
+      elmnt.style.color = "#000000";
+
+      //change background
+      document.getElementById("navbar").style.backgroundImage = image;
+    }
+
+    function openPage(pageName, elmnt, color) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabbodycontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tabbodylink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+      document.getElementById("bodyselect").style.backgroundColor = color;
+      elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+  </script>
+
+</body>
+
+</html>

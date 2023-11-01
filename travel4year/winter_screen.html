@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #navbar {
+      overflow: hidden;
+      background-color: #ffffff;
+      background-image: url('image/bg_spring.jpg');
+      background-size: cover;
+      padding: 80px 10px;
+      transition: 0.4s;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 99;
+    }
+
+    #navbar a {
+      float: left;
+      color: black;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      line-height: 25px;
+      border-radius: 4px;
+    }
+
+    #navbar #logo {
+      font-size: 35px;
+      font-weight: bold;
+      transition: 0.4s;
+    }
+
+    #navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    #navbar a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+
+    #navbar-right {
+      float: right;
+    }
+
+    .header {
+      width: 100%;
+      background-color: #555;
+      overflow: auto;
+    }
+
+    /* Navbar links */
+    .header a {
+      float: left;
+      text-align: center;
+      padding: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    /* Navbar links on mouse-over */
+    .header a:hover {
+      background-color: #000;
+    }
+
+    /*login*/
+    .open-button {
+      background-color: #555;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .form-popup {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    @media screen and (max-width: 580px) {
+      #navbar {
+        padding: 20px 10px !important;
+      }
+
+      #navbar a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+
+      #navbar-right {
+        float: none;
+      }
+    }
+
+    .tablink {
+      background-color: #555;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      width: 25%;
+    }
+
+    .tabbodylink {
+      background-color: rgb(59, 21, 225);
+      color: white;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      width: 50%;
+    }
+
+    /* Change background color of buttons on hover */
+    .tablink:hover {
+      background-color: rgb(28, 233, 17);
+    }
+
+    .tabbodylink:hover {
+      background-color: rgb(228, 8, 151);
+    }
+
+    /* Set default styles for tab content */
+    .tabcontent {
+      color: black;
+      display: none;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .tabbodycontent {
+      color: black;
+      display: none;
+      padding: 100px 20px;
+      height: 100%;
+    }
+
+    /* Style each tab content individually */
+    #Spring {
+      background-color: #FFCCBC;
+    }
+
+    #Summer {
+      background-color: #e2eb75;
+    }
+
+    #Autumn {
+      background-color: #ec949e;
+    }
+
+    #Winter {
+      background-color: #f5f5f5;
+    }
+
+    #Place {
+      background-color: white;
+    }
+
+    #Food {
+      background-color: white;
+    }
+    /*chinh common-main, content*/
+#common-main {
+  width: 65.55556%;
+  padding: 100 20 100 20;
+  border: 100 10 100 10;
+  position: relative;
+ 
+  
+}
+@media (min-width: 1281px){
+  #common-main {
+    width: 767px;
+    margin-right: 58px;
+    margin-bottom: 92px;
+    position: relative;
+   
+}
+}
+#content {
+  background: #f9f9f9;
+  border: 1px solid #aaaaaa;
+  width: 100%;
+}
+#content {
+  background: #f9f9f9;
+  border: 1px solid #aaa;
+  padding: 10px;
+  margin-bottom: 1em;
+  width: auto;
+  display: table;
+  font-size: 95%;
+}
+h2 {
+  font-size: 50px;
+  padding: 11px 0 10px 16px;
+  margin-left: -4px;
+  margin-bottom: 29px;
+  position: relative;
+  border-left: solid 10px #FFE200;
+}
+  </style>
+</head>
+
+<body>
+
+  <div id="navbar">
+    <a href="splash_screen.html" id="logo"><img src="image/logo.png" width="250px" height="100px" alt="logo"></a>
+    <div id="navbar-right">
+      <a class="active" href="#VIE">VIE</a>
+      <a href="#JA">JA</a>
+      <a href="#ENG">ENG</a>
+    </div>
+  </div>
+  <div style="margin-top:210px;font-size:30px;background-color: #FFCCBC">
+    <div class="header">
+      <div id="Spring" class="tabcontent">
+        <h1>Spring</h1>
+        <p>Mùa xuân thường rơi vào tháng 3 đến tháng 5 ở Nhật Bản. “Sakura” hay hoa anh đào là biểu tượng của mùa xuân ở Nhật Bản. Nhiều người tụ tập dưới tán cây anh đào trong lễ hội “ohanami”, nghĩa là ngắm hoa anh đào khắp nơi trên nước Nhật. Địa hình nước Nhật trải dài từ Bắc xuống Nam. Hoa anh đào bắt đầu nở ở phía Nam vào cuối tháng 3 rồi di chuyển dần lên phía Bắc. Hokkaido, nằm ở phía Bắt Nhật Bản chào đón hoa anh đào vào tháng 5. Mùa xuân với thời tiết dễ chịu, thích hợp cho nhiều hoạt động giải trí khác nhau.
+
+          Hoa tử đằng, hoa rêu hồng và nhiều loại hoa khác ngoài sakura cũng nở vào mùa xuân. Hoa là điểm thu hút du khách nhưng đồng thời cũng đóng vai trò như biển báo dẫn đường.</p>
+      </div>
+
+      <div id="Summer" class="tabcontent">
+        <h1>Summer</h1>
+        <p>Mùa hè thường bắt đầu từ tháng 6 đến tháng 8. Nhật Bản được biển bao bọc xung quanh nên quý khách có thể tham gia hoạt động bơi lội ở nhiều nơi. Quý khách có thể bơi ở bãi biển gần Tokyo nhưng các hòn đảo ở xa của Okinawa cũng đón chào du khách đến tận hưởng thời gian thư giãn.
+
+          Khi mùa mưa, còn gọi là “tsuyu”, kéo dài từ tháng 6 đáng cuối tháng 7 kết thúc, nhiệt độ sẽ tăng nhanh. Đây là mùa của lễ hội mùa hè và pháo hoa diễn ra khắp Nhật Bản. Quý khách có thể ngắm nhìn lễ hội hoặc tham gia nhảy múa tại các lễ hội khác.</p>
+      </div>
+
+      <div id="Autumn" class="tabcontent">
+        <h1>Autumn</h1>
+        <p>Mùa thu thường kéo dài từ tháng 9 đến tháng 11. Khi nhiệt độ mùa hè giảm đi cũng là lúc mùa có không khí dễ chịu và thoải mái nhất đến. Thời gian lá đổi màu cao điểm diễn ra từ tháng 10 đến cuối tháng 11. Những ngọn núi ở Hokkaido bắt đầu chuyển sắc và lá chuyển màu dần từ Bắc xuống Nam Nhật Bản. Hãy đếm thăm những điểm thu hút du khách ở khắp Nhật Bản nổi tiếng với tán lá chuyển màu và chìm trong cảm giác vui thích giữa màu sắc.</p>
+      </div>
+
+      <div id="Winter" class="tabcontent">
+        <h1>Winter</h1>
+        <p>Mùa đông bắt đầu từ tháng 12 đến tháng 2. Đây là mùa lạnh nhất trong năm, hoàn hảo để tận hưởng trong những suối nước nóng. Đắm mình vào suối nước nóng trong khi thưởng thức cảnh đẹp mùa đông là trải nghiệm đặc biệt khác thường. Những sự kiện chiếu sáng được tổ chức khắp Nhật Bản cho đến cuối năm.</p>
+      </div>
+
+      <button class="tablink" onclick="location.href='spring_screen.html'">Spring</button>
+      <button class="tablink" onclick="location.href='summer_screen.html'">Summer</button>
+      <button class="tablink" onclick="location.href='autumn_screen.html'">Autumn</button>
+      <button class="tablink" id="defaultOpen"
+        onclick="openTypeHeader('Winter', this, '#f5f5f5','url(\'image/bg_winter.jpg\')')">Winter</button>
+
+    </div>
+  </div>
+
+  <div style="margin-top:0px;padding:0px 0px 2500px;font-size:30px;" id="bodyselect">
+
+    <button class="tabbodylink" id="defaultBodyOpen" onclick="openPage('Place', this, 'red')">Place</button>
+    <button class="tabbodylink" onclick="openPage('Food', this, 'green')" >Food</button>
+    <div id="Place" class="tabbodycontent">
+      <div class="common-main">
+        <section class="common-single">
+          <h1>日本の理想的な春の目的地を 15 か所紹介します</h1>
+          <div class="content">
+            <p>
+              <img src="" alt="">
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="1_Hakuba, Nagano">1. Hakuba, Nagano</span></h2>
+            <p><img src="image/hakuba.png" alt="Hakuba, Nagano" ></p>
+            <p>Khu nghỉ dưỡng trượt tuyết của Hakuba, Nagano là một trong những điểm du lịch mùa đông tại Nhật Bản nhận được nhiều sự yêu thích của du khách. Nơi đây có những con dốc với độ cong tuyệt đẹp, ván trượt, giày trượt và phòng tắm tiện nghi, là những yếu tố tuyệt vời gợi lên sự hứng khởi cho du khách.</p>
+            
+            <p>
+              Khu nghỉ dưỡng trượt tuyết của Hakuba, Nagano là một trong những điểm du lịch mùa đông tại Nhật Bản nhận được nhiều sự yêu thích của du khách. Nơi đây có những con dốc với độ cong tuyệt đẹp, ván trượt, giày trượt và phòng tắm tiện nghi, là những yếu tố tuyệt vời gợi lên sự hứng khởi cho du khách.
+            </p>
+            <p>Nếu bạn có con nhỏ, đừng ngần ngại khi giao phó “báu vật” của mình cho những người hướng dẫn. Cứ nhìn những đứa trẻ vui đùa khắp cả 7 khu trượt tuyết ở đây thì bạn sẽ rõ, một vài đứa có lẽ chỉ khoảng 5 tuổi thôi. Những hướng dẫn viên tận tình sẽ giúp bạn để mắt tới những đứa trẻ. Có thể nói, mùa đông ở Nhật Bản là thời gian nghỉ dưỡng tuyệt vời nhất cho các gia đình có trẻ nhỏ.</p>
+            <p>Hakuba cũng sở hữu các khu nghỉ dưỡng, đồ ăn và các hoạt động phù hợp với rất nhiều phong cách, từ phong cách truyền thống Nhật Bản cho đến phong cách Tây Âu. Các cung đường trượt tuyết ở đây cũng rất đa dạng, từ các cung đường dài xuyên rừng cho đến những cung đường trượt với độ dốc cao dành cho những người ưa cảm giác mạnh. Tất cả đều sẵn sàng cho bạn lựa chọn. Bạn cũng đừng quên ghé qua Jigokudani, ngay cạnh Hakuba để thăm những chú khỉ tuyết – một loài động vật quý hiếm trên thế giới.</p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="2_Shirakawago, Gifu">2. Shirakawago, Gifu</span></h2>
+            <p><img src="image/ShirakawagoGifu.png" alt="Shirakawago, Gifu" ></p>
+            <p>Bản sắc văn hoá độc đáo của Nhật Bản có thể khiến bất cứ du khách nào cũng cảm thấy hài lòng khi ghé thăm. Bạn cũng có thể kết hợp một kỳ nghỉ trượt tuyết với chuyến du lịch khám phá “xứ sở mặt trời mọc” tuyệt vời.</p>
+            
+            <p>
+              Với vẻ đẹp mang đậm nét cổ kính và yên bình, Shirakawago là một trong những địa danh có thể cuốn hút tâm trí bạn ngay từ những giây phút đầu tiên. Ngăn cách với thế giới bên ngoài bởi những ngọn núi cao, ngôi làng nhỏ này mới chỉ được “phát hiện” chừng 10 năm đổ lại đây. Ấn tượng mà Shirakawago mang lại cho du khách là một ngôi làng nhỏ xinh đẹp với những túp lều tranh, chiếc bánh gừng và nền văn hoá độc đáo.
+            </p>
+            <p>Được giới thiệu bởi trang web về di sản thế giới, Shirakawago đón chào lượng du khách ngày một tăng. Vẻ đẹp xanh tươi đầy sức sống trong mùa hè hay trắng muốt tinh khôi màu tuyết vào mùa đông của Shirakawago luôn khiến cho du khách không nỡ rời khỏi nơi đây. Trong làng luôn có sẵn các Minshuku (nhà khách) để khách trọ lại. Đây cũng được coi là thiên đường đối với những tín đồ đam mê chụp ảnh.</p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="3_Hida, Takayama">3. Hida, Takayama</span></h2>
+            <p><img src="image/HidaTakayama.png" alt="Hida, Takayama" ></p>
+            <p>Takayama còn được biết đến như một “Kyoto thu nhỏ” cũng bởi những thành trì, kiến trúc cổ kính từ thời Edo vẫn còn được giữ lại. Sức quyến rũ của Takayama còn đến từ nền ẩm thực vô cùng đặc biệt, từ đặc sản địa phương như: Sansai (rau núi), Wasakana (cá sông), thịt bò Hida (đối thủ cạnh tranh của thịt bò Wagyu), mỳ Soba truyền thống theo hương vị Takayama tới một loạt nhà máy bia ngon nhất nước Nhật. Đặc biệt, bạn không nên bỏ qua món Hōba miso – món nướng của địa phương, được làm chủ yếu từ thịt bò hoặc cá nướng trên lá Hōba (một loài cây họ gần với cây Mộc Lan) hoặc lá sồi.</p>
+            
+            <p>
+              Takayama có những trận tuyết rơi cao nhất ở Nhật Bản – đảm bảo thoả mãn bất cứ nhiếp ảnh gia chuyên nghiệp nào. Hình ảnh cây cầu sơn đỏ với những người phụ nữ mong manh trong chiếc kimono truyền thống, xung quanh là những rặng thông đỏ đủ để làm bất cứ du khách nào cũng phải hài lòng.
+            </p>
+            <p>Có thể nói Takayama còn là địa phương thân thiện với môi trường. Khu phố cổ đan xen rải rác một vài toà nhà Kura tuyệt đẹp được xây bằng bùn và gạch – những vật liệu chịu lửa tuyệt vời, giữa hàng loạt những ngôi nhà cổ bằng gỗ và giấy xung quanh. Những ngôi nhà Kura là nơi mà cộng đồng gửi gắm những vật dụng quý giá của họ để đề phòng những trận hoả hoạn. Ngày nay, nhà Kura còn được chuyển đổi thành các cửa hàng, quán cà phê thời thượng và cũng là nơi để du khách nếm thử món rượu Sake địa phương tuyệt vời.</p>
+            <p>Mỗi mùa ở Takayama lại có những nét quyến rũ riêng. Mùa thu và mùa xuân ở Takayama là mùa lễ hội với hai lễ hội nổi tiếng lần lượt diễn ra. Những chiếc xe hoa tuyệt đẹp đã sử dụng trong dịp lễ hội sẽ được người ta trưng bày suốt cả năm ở bảo tàng. Nếu bạn định đến Nhật Bản vào mùa đông, đừng quên thêm Takayama vào danh sách những nơi cần đến thăm.</p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="4_Gero, Gifu">4. Gero, Gifu</span></h2>
+            <p><img src="image/GeroGifu.png" alt="Gero, Gifu" ></p>
+            <p>Suối nước nóng Gero ở Yunoshima, thành phố Gero, tỉnh Gifu, là một trong ba suối nước nóng nổi tiếng nhất tại Nhật Bản. Đây là địa điểm tuyệt vời để tận hưởng chuyến du lịch trong ngày và cả nghỉ ngơi qua đêm. Trên thực tế, Gero có vai trò như một “nơi cung cấp nước” vì nó thuộc hệ thống dòng nước ngầm phong phú của vùng biển nhiệt. Hãy dũng cảm, cởi quần áo và trượt trong các hồ nước nóng, nhưng có một vài bước để làm theo trước khi làm như vậy.</p>
+            
+            <p>
+              Bên trong các Suimeikan Ryokan (nhà trọ truyền thống) có 3 onsen (suối nước nóng) sang trọng, với không gian rộng mở mang lại cảm giác thư thái, yên bình cho du khách.
+            </p>
+            <p>Ngoài ra, bạn có thể trải nghiệm một điều “điên rồ” thú vị mà không thể làm ở bất kỳ nơi nào khác, là khoả thân trên tuyết và tới các hồ bơi. Hơn nữa, không gian xung quanh được bài trí theo phong cách sân vườn đậm “chất” Nhật Bản với một vài hòn đá, cây xanh có thể mang lại cảm giác thư giãn tuyệt vời cho các du khách.</p>
+            <p>Cho dù không gian mở của Onsen có hướng bạn ra cảnh tuyết rơi, hay phong cảnh núi rừng bao bọc, hoặc một dòng sông chảy bên dưới, thì trải nghiệm này cũng thực sự rất “Nhật Bản”.</p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="5_Đền Kinkaku-ji">5. Đền Kinkaku-ji</span></h2>
+            <p><img src="image/kinkakuji.png" alt="Đền Kinkaku-ji" ></p>
+            <p>Ngôi đền Vàng nằm ở cố đô Kyoto cũng là điểm đến đẹp nhất ở cố đô. Mùa đông Nhật Bản đến, cũng là lúc Kinkaku-ji được phủ giữa bốn bề bởi tuyết trắng, du khách sẽ không khỏi ngạc nhiên khi chứng kiến khung cảnh này như một lâu đài băng nằm giữa hồ với cơn mưa trắng xóa sẽ làm bạn không thể quên được.
+            <p>
+              Nếu có dịp du lịch Nhật Bản vào mùa đông thì đừng bỏ qua những địa điểm sau đây vào hành trình của bạn, chắc chắn bạn sẽ không cảm thấy hối tiếc chút nào đâu.</p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="6_Rokkosan Snow Park">6. Rokkosan Snow Park</span></h2>
+            <p><img src="image/rokkosan.png" alt="Rokkosan Snow Park" ></p>
+            <p>Khu trượt tuyết nổi tiếng gần Osaka nhất là Công viên tuyết núi Rokko. Dù là khu trượt tuyết nhân tạo nhưng đôi lúc cũngcó tuyết tự nhiên ở đây vào mùa đông. Nơi này được phân thành hai khu riêng biệt có dốc và không dốc nên trẻ em có thể yên tâm vui chơi. Thứ bảy, chủ nhật sẽ bị giới hạn số người vào chơi nên hãy cố gắng đi sớm nhé!
+            </p>
+              <p>Website:&nbsp; <a href="https://www.rokkosan.com/access/">https://www.rokkosan.com/access/</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="7_Công viên hoa Nabana no sato (Mie)">7. Công viên hoa Nabana no sato (Mie)</span></h2>
+            <p><img src="image/nabananosato.png" alt="Công viên hoa Nabana no sato (Mie)" ></p>
+            <p>Nabana no sato là một công viên hoa nằm ở thành phố Kuwana, tỉnh Mie. Nơi đây tự hào có nhiều loại hoa và thực vật theo mùa, thu hút lượng khách du lịch đông đảo trong và ngoài nước. Bạn có thể cảm thấy một chút lạ lẫm vì mùa đông thường không thích hợp để thưởng thức hoa nở, nhưng ở đây thì khác. Vì họ có một nhà kính lớn, tạo môi trường thích hợp cho hoa phát triển quanh năm, bảo vệ chúng khỏi thời tiết lạnh giá vào mùa đông.
+            </p>
+            <p>
+              Trên thực tế, mùa đông là mùa được nhiều du khách ghé thăm nhất vì có một lễ hội chiếu sáng nổi tiếng được tổ chức hàng đêm trong suốt mùa đông. Toàn bộ khu vườn được thắp sáng rực rỡ với những ánh sáng lấp lánh với một chủ đề khác nhau hàng năm. Một đường hầm ánh sáng kéo dài khoảng 200 mét và một biển đèn bao quanh cây ô liu hơn 1.000 năm tuổi, tất cả tạo nên một màn trình diễn ánh sáng ngoạn mục, nơi bạn có thể đi qua và chụp những bức ảnh tuyệt đẹp.
+            </p>
+              <p>Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="8_Đại lộ Metasequoia (Shiga)">8. Đại lộ Metasequoia (Shiga)</span></h2>
+            <p><img src="image/Metasequoia.png" alt="Đại lộ Metasequoia (Shiga)" ></p>
+            <p>Một trong những cung đường lãng mạn nhất tại Phù Tang chính là đại lộ lá vàng Metasequoia tại tỉnh Shiga. Nơi đây nổi tiếng vào mùa thu khi được nhuộm một màu vàng rực bởi những hàng cây bên đường, khoảng 500 cây được trồng dọc hai bên đường tỉnh lộ 287.
+            </p>
+            <p>
+              Tuy nhiên, con đường yên bình dài 2,4 km không bao giờ ngừng mê hoặc du khách, nhất là những cặp đôi thích sự lãng mạn khi thời tiết trở lạnh. Nơi đây được nhiều người biết đến như một danh lam thắng cảnh với những hàng cây đẹp sừng sững vươn thẳng lên trời một cách lặng lẽ, nhưng mạnh mẽ. Khi bạn lái xe qua con đường, những hàng cây metasequoia cao ngất ngây mê hoặc bạn với khung cảnh khác nhau theo từng mùa . Thế giới màu trắng tuyệt đẹp do tuyết tạo ra khiến nơi đây trở thành điểm đến tuyệt vời nhất cho chuyến du lịch mùa đông của bạn, cho ra những tấm hình lung linh.
+            </p>
+              <p>Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="9_Khu vườn Kenrokuen (Ishikawa)">9. Khu vườn Kenrokuen (Ishikawa)</span></h2>
+            <p><img src="image/kenrokuen.png" alt="Khu vườn Kenrokuen (Ishikawa)" ></p>
+            <p>Kenrokuen là một khu vườn rộng lớn với 11,4 ha đất nằm ở trung tâm thành phố Kanazawa, tỉnh Ishikawa. Được coi là một trong ba khu vườn lớn ở Nhật Bản, nơi đây thu hút một lượng du khách đến tham quan quanh năm cùng với lâu đài Kanazawa gần đó. Công trình ban đầu được tạo ra bởi gia tộc Kaga, cai quản khu vực trong thời kỳ Edo. 
+            </p>
+            <p>
+              Du khách bị mê hoặc bởi khu vườn kiểng với một số công trình kiến trúc mang tính biểu tượng như quán trà truyền thống của Nhật Bản, những chiếc đèn lồng bằng đá rực rỡ, những chiếc ao trong vắt và ngọn núi nhân tạo. Mọi thứ được thiết kế để hoàn toàn phù hợp với cảnh quan tuyệt đẹp và thiên nhiên xung quanh. Đặc biệt, những cây thông trong vườn được bao phủ bởi một số dây thừng kéo dài từ trên xuống. Đây được gọi là Yukitsuri, là một cách truyền thống để bảo vệ cành cây khỏi tuyết rơi dày đặc, mang lại vẻ đẹp thơ mộng cho mùa đông vùng Hokuriku.
+            </p>
+              <p>Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="Food" class="tabbodycontent">
+      <div class="common-main">
+        <section class="common-single">
+          <h1>日本の理想的な春の目的地を 15 か所紹介します</h1>
+          <div class="content">
+            <p>
+              <img src="" alt="">
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="1_Kawazuzakura">1. Kawazuzakura</span></h2>
+            <p>Kawazuzakura (河津 ザ ク ラ) là một loại hoa anh đào cụ thể có thể được nhìn thấy ở khu vực Kawazu nằm trên bán đảo Izu thuộc tỉnh Shizuoka. Nó được biết đến như một loài hoa anh đào nở sớm, và những bông hoa xinh đẹp của nó bắt đầu nở từ đầu tháng 2. Hoa có cánh hoa lớn có màu hồng đậm.</p>
+            <p><img src="image/kawajisakura.png" alt="kawajisakura" ></p>
+            <p>
+              河津川沿いでは、毎年2月上旬から3月上旬にかけて河津桜まつりが開催され、何百万人もの観光客が訪れます。川沿いに約800本の桜が咲き誇る人気イベントがあります。
+            </p>
+            <p>
+              Website:&nbsp; <a href="http://kawazuzakura.info/">http://kawazuzakura.info/</a>
+            </p>
+            <p>&nbsp;</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-popup" id="myForm">
+    <form action="#" class="form-container">
+      <h1>Contact</h1>
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Name" name="name" required>
+
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+
+      <label for="comment"><b>Comment</b></label>
+      <input type="text" placeholder="Comment" name="Comment" required>
+
+
+
+      <button type="submit" class="btn">Send</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+
+  <script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        document.getElementById("navbar").style.padding = "30px 10px";
+        document.getElementById("logo").style.fontSize = "25px";
+      } else {
+        document.getElementById("navbar").style.padding = "80px 10px";
+        document.getElementById("logo").style.fontSize = "35px";
+      }
+    }
+
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+
+    function openTypeHeader(cityName, elmnt, color, image) {
+      // Hide all elements with class="tabcontent" by default */
+      var i, tabcontent, tablinks, headerurl;
+      tabcontent = document.getElementsByClassName("tabcontent");
+
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Remove the background color of all tablinks/buttons
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.color = "#ffffff";
+      }
+
+      // Show the specific tab content
+      document.getElementById(cityName).style.display = "block";
+
+      // Add the specific color to the button used to open the tab content
+      elmnt.style.backgroundColor = color;
+      elmnt.style.color = "#000000";
+
+      //change background
+      document.getElementById("navbar").style.backgroundImage = image;
+    }
+
+    function openPage(pageName, elmnt, color) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabbodycontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tabbodylink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+      document.getElementById("bodyselect").style.backgroundColor = color;
+      elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+  </script>
+
+</body>
+
+</html>

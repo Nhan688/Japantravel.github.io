@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #navbar {
+      overflow: hidden;
+      background-color: #ffffff;
+      background-image: url('image/bg_spring.jpg');
+      background-size: cover;
+      padding: 80px 10px;
+      transition: 0.4s;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 99;
+    }
+
+    #navbar a {
+      float: left;
+      color: black;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      line-height: 25px;
+      border-radius: 4px;
+    }
+
+    #navbar #logo {
+      font-size: 35px;
+      font-weight: bold;
+      transition: 0.4s;
+    }
+
+    #navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    #navbar a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+
+    #navbar-right {
+      float: right;
+    }
+
+    .header {
+      width: 100%;
+      background-color: #555;
+      overflow: auto;
+    }
+
+    /* Navbar links */
+    .header a {
+      float: left;
+      text-align: center;
+      padding: 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    /* Navbar links on mouse-over */
+    .header a:hover {
+      background-color: #000;
+    }
+
+    /*login*/
+    .open-button {
+      background-color: #555;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .form-popup {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    @media screen and (max-width: 580px) {
+      #navbar {
+        padding: 20px 10px !important;
+      }
+
+      #navbar a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+
+      #navbar-right {
+        float: none;
+      }
+    }
+
+    .tablink {
+      background-color: #555;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      width: 25%;
+    }
+
+    .tabbodylink {
+      background-color: rgb(59, 21, 225);
+      color: white;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      width: 50%;
+    }
+
+    /* Change background color of buttons on hover */
+    .tablink:hover {
+      background-color: rgb(28, 233, 17);
+    }
+
+    .tabbodylink:hover {
+      background-color: rgb(228, 8, 151);
+    }
+
+    /* Set default styles for tab content */
+    .tabcontent {
+      color: black;
+      display: none;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .tabbodycontent {
+      color: black;
+      display: none;
+      padding: 100px 20px;
+      height: 100%;
+    }
+
+    /* Style each tab content individually */
+    #Spring {
+      background-color: #FFCCBC;
+    }
+
+    #Summer {
+      background-color: #e2eb75;
+    }
+
+    #Autumn {
+      background-color: #ec949e;
+    }
+
+    #Winter {
+      background-color: #f5f5f5;
+    }
+
+    #Place {
+      background-color: white;
+    }
+
+    #Food {
+      background-color: white;
+    }
+    /*chinh common-main, content*/
+#common-main {
+  width: 65.55556%;
+  padding: 100 20 100 20;
+  border: 100 10 100 10;
+  position: relative;
+ 
+  
+}
+@media (min-width: 1281px){
+  #common-main {
+    width: 767px;
+    margin-right: 58px;
+    margin-bottom: 92px;
+    position: relative;
+   
+}
+}
+#content {
+  background: #f9f9f9;
+  border: 1px solid #aaaaaa;
+  width: 100%;
+}
+#content {
+  background: #f9f9f9;
+  border: 1px solid #aaa;
+  padding: 10px;
+  margin-bottom: 1em;
+  width: auto;
+  display: table;
+  font-size: 95%;
+}
+h2 {
+  font-size: 50px;
+  padding: 11px 0 10px 16px;
+  margin-left: -4px;
+  margin-bottom: 29px;
+  position: relative;
+  border-left: solid 10px #FFE200;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div id="navbar">
+    <a href="splash_screen.html" id="logo"><img src="image/logo.png" width="250px" height="100px" alt="logo"></a>
+    <div id="navbar-right">
+      <a class="active" href="#VIE">VIE</a>
+      <a href="#JA">JA</a>
+      <a href="#ENG">ENG</a>
+    </div>
+  </div>
+  <div style="margin-top:210px;font-size:30px;background-color: #FFCCBC">
+    <div class="header">
+      <div id="Spring" class="tabcontent">
+        <h1>Spring</h1>
+        <p>Spring là mùa mát vờ lờ</p>
+      </div>
+
+      <div id="Summer" class="tabcontent">
+        <h1>Summer</h1>
+        <p>Mùa hè thường bắt đầu từ tháng 6 đến tháng 8. Nhật Bản được biển bao bọc xung quanh nên quý khách có thể tham gia hoạt động bơi lội ở nhiều nơi. Quý khách có thể bơi ở bãi biển gần Tokyo nhưng các hòn đảo ở xa của Okinawa cũng đón chào du khách đến tận hưởng thời gian thư giãn.
+
+          Khi mùa mưa, còn gọi là “tsuyu”, kéo dài từ tháng 6 đáng cuối tháng 7 kết thúc, nhiệt độ sẽ tăng nhanh. Đây là mùa của lễ hội mùa hè và pháo hoa diễn ra khắp Nhật Bản. Quý khách có thể ngắm nhìn lễ hội hoặc tham gia nhảy múa tại các lễ hội khác.</p>
+      </div>
+
+      <div id="Autumn" class="tabcontent">
+        <h1>Autumn</h1>
+        <p>Mùa thu thường kéo dài từ tháng 9 đến tháng 11. Khi nhiệt độ mùa hè giảm đi cũng là lúc mùa có không khí dễ chịu và thoải mái nhất đến. Thời gian lá đổi màu cao điểm diễn ra từ tháng 10 đến cuối tháng 11. Những ngọn núi ở Hokkaido bắt đầu chuyển sắc và lá chuyển màu dần từ Bắc xuống Nam Nhật Bản. Hãy đếm thăm những điểm thu hút du khách ở khắp Nhật Bản nổi tiếng với tán lá chuyển màu và chìm trong cảm giác vui thích giữa màu sắc.</p>
+      </div>
+
+      <div id="Winter" class="tabcontent">
+        <h1>Winter</h1>
+        <p>Mùa đông bắt đầu từ tháng 12 đến tháng 2. Đây là mùa lạnh nhất trong năm, hoàn hảo để tận hưởng trong những suối nước nóng. Đắm mình vào suối nước nóng trong khi thưởng thức cảnh đẹp mùa đông là trải nghiệm đặc biệt khác thường. Những sự kiện chiếu sáng được tổ chức khắp Nhật Bản cho đến cuối năm.</p>
+      </div>
+
+      <button class="tablink" onclick="location.href='spring_screen.html'">Spring</button>
+      <button class="tablink" id="defaultOpen"
+        onclick="openTypeHeader('Summer', this, '#e2eb75','url(\'image/bg_summer.jpg\')')">Summer</button>
+      <button class="tablink" onclick="location.href='autumn_screen.html'">Autumn</button>
+      <button class="tablink" onclick="location.href='winter_screen.html'">Winter</button>
+
+    </div>
+  </div>
+
+  <div style="margin-top:0px;padding:0px 0px 2500px;font-size:30px;" id="bodyselect">
+
+    <button class="tabbodylink" id="defaultBodyOpen" onclick="openPage('Place', this, 'red')">Place</button>
+    <button class="tabbodylink" onclick="openPage('Food', this, 'green')" >Food</button>
+    <div id="Place" class="tabbodycontent">
+      <div class="common-main">
+        <section class="common-single">
+          <h1>日本の理想的な春の目的地を 15 か所紹介します</h1>
+          <div class="content">
+            <p>
+              <img src="" alt="">
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="1_Okinawa">1. Okinawa</span></h2>
+            <p><img src="image/Okinawa.png" alt="Okinawa" ></p>
+            <p>Vịnh Kabira thuộc Đảo Ishigaki là một trong những địa danh ngắm cảnh tuyệt vời mà bạn nhất định đến 1 lần trong đời, chỉ mất khoảng 40 phút lái xe ô tô từ Ishigaki để đến đây. Mọi thứ ở bãi biển Okinawa đều lung linh xinh đẹp như tranh vẽ trên những tấm bưu thiếp. Đến đây, bạn có thể dành cho mình những phút giây thư thái trên thuyền kính và ngắm nhìn từng rạn san hô màu sắc, những chú cá nhiệt đới bơi lội tung tăng dưới đáy đại dương trong suốt và nhìn thấy dải cát trắng dài mịn màng, tinh khiết. Nói đến hè thì chắc chắn không thể bỏ qua việc tắm biển và bãi biển ở đây sẽ cho bạn cảm giác vô cùng khác biệt so với những bãi biển bạn đã từng đi trước đây.
+            </p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="2_lễ hội mùa hè Natsu Matsuri">2. lễ hội mùa hè Natsu Matsuri</span></h2>
+            <p><img src="image/NatsuMatsuri.png" alt="lễ hội mùa hè Natsu Matsuri" ></p>
+            <p>Bạn sẽ không được xem là đã đến Nhật Bản trong mùa hè nếu bỏ qua các lễ hội tươi vui, đình đám của người dân bản địa như Lễ hội Natsu Matsuri được. Đây là khoảng thời gian bạn có thể hoàn toàn hòa mình vào nét văn hoá đặc biệt và những điệu nhảy đặc trưng Bon odori, mang đậm bản sắc văn hóa Nhật.
+              Ngoài ra, du khách còn được tham gia vào các trò chơi như bắt cá vàng, bắn súng hay thưởng thức những đĩa mì xào thơm ngon cùng các món ăn thú vị như chuối phủ socola, bắp rang nướng, v.v... Lễ hội này tổ chức vào mùa hè diễn ra từ tháng 3 đến tháng 7 ở hầu hết các thành phố ở Nhật nên nếu có dịp thì hãy đến và trải nghiệm qua những trò chơi truyền thống vô cùng thú vị nhé.
+            </p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="3_Bieu - Furano phía Bắc Hokkaido">3. Bieu - Furano phía Bắc Hokkaido</span></h2>
+            <p><img src="image/Bieu_Furano_Hokkaido.png" alt="Bieu - Furano phía Bắc Hokkaido" ></p>
+            <p>Một trong những địa điểm đẹp và chất, đáng để bạn quan tâm khi đến Nhật Bản mùa hè đó là Biei-Furano tại Bắc Hokkaido. Với khí hậu ôn hoà, dễ chịu trong nền nhiệt độ tầm khoảng 20 độ C và khung cảnh cánh đồng hoa oải hương thơm ngát trải dài, nở rộ tại trang trại Tomita - Furano sẽ khiến du khách ngất ngây ngay từ lần đầu trông thấy. Ngoài ra, bạn còn có thể mua được các thức quà lưu niệm được làm từ hoa oải hương mang về cho gia đình, bạn bè.
+            </p>
+            <p></p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="4_Lễ hội Awa Odori Matsuri">4.Lễ hội Awa Odori Matsuri</span></h2>
+            <p><img src="image/awa-odori.png" alt="Lễ hội Awa Odori Matsuri" ></p>
+            <p>Lễ hội này là một phần của nghi lễ Obon trong Phật giáo để chào đón những linh hồn của người chết. Nó có ý nghĩa tượng trưng là cuộc hội ngộ gia đình, là khi linh hồn của tổ tiên quay về thăm bàn thờ gia đình. Được tổ chức xuyên suốt 500 năm, Awa Odori đã trở thành một trong những lễ hội mùa hè nổi tiếng nhất trong cả nước. Cứ mỗi tối, đường phố nhộn nhịp với âm thanh của trống, shamisen (một nhạc cụ truyền thống giống như đàn guitar ba dây), và nhiều nhạc cụ khác. Các vũ công Bon-Odori sẽ đội mũ rơm và mặc yukata.
+            </p>
+            <p>Thời gian diễn ra lễ hội: Hàng đêm, từ ngày 12 đến ngày 15 tháng 8.<br>
+
+              Địa điểm: Tokushima, trong vùng Shikoku.</p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="5_Lễ hội Aomori Nebuta Matsuri">5. Lễ hội Aomori Nebuta Matsuri</span></h2>
+            <p><img src="image/nebuta.png" alt="Lễ hội Aomori Nebuta Matsuri" ></p>
+            <p>Được coi là một trong ba lễ hội nổi tiếng nhất của Nhật Bản. Lễ hội Nebuta đã được UNESCO công nhận là một trong những “Di sản văn hóa phi vật thể thế giới”. Trong thời gian diễn ra lễ hội, những chiếc kiệu đèn lồng khổng lồ 3D nhiều màu sắc được diễu hành trên phố. Vào ngày cuối cùng của lễ hội, đừng bỏ lỡ màn bắn pháo hoa tuyệt đẹp kéo dài hai giờ khép lại các hoạt động lễ hội. Người ta cho rằng lễ hội mùa hè này có nguồn gốc từ Lễ hội Tanabata, bắt nguồn từ Trung Quốc hồi những năm 700.
+            </p>
+            <p>Thời gian diễn ra lễ hội: Các đêm từ ngày 2 đến ngày 7 tháng 8.<br>
+
+              Địa điểm: Aomori, tỉnh Aomori</p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="6_Lễ hội HANABI">5. Lễ hội pháo hoa</span></h2>
+            <p><img src="image/hanabikobe.png" alt="Lễ hội HANABI" ></p>
+            <p>Nhật Bản pháo hoa không chỉ có vào dịp tết, mà đặc biệt lễ hội pháo hoa  tổ chức vào khoảng cuối tháng 7 đầu tháng 8 hàng năm còn là dịp để người dân khắp nơi trên cả nước có dịp nghỉ ngơi và vui chơi
+
+              Lễ hội pháo hoa hay còn gọi là “hanabi” là hoạt động lễ hội được tổ chức vào dịp giữa năm , thường diễn ra ở khắp nơi trên đất nước Nhật, khu vực có lễ hội lớn nhất là ở ven sống Sumida chạy ngang khu dân cư ở Tokyo về phía Đông, đây là địa danh thu hút nhiều người xem và vui chơi nhất. Mỗi năm khoảng 2 vạn quả pháo hoa thu hút hơn 900 nghìn người xem với nhiều hình thù màu sắc khác nhau.
+            </p>
+            <p>Thời gian diễn ra lễ hội: cuối tháng 7 đầu tháng 8 hàng năm.<br>
+
+              Địa điểm: Toàn cầu</p>
+            <p>
+              Website:&nbsp; <a href="#">#</a>
+            </p>
+            <p>&nbsp;</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="Food" class="tabbodycontent">
+      <div class="common-main">
+        <section class="common-single">
+          <h1>日本の理想的な春の目的地を 15 か所紹介します</h1>
+          <div class="content">
+            <p>
+              <img src="" alt="">
+            </p>
+            <p>&nbsp;</p>
+            <h2><span id="1_Kawazuzakura">1. Kawazuzakura</span></h2>
+            <p>Kawazuzakura (河津 ザ ク ラ) là một loại hoa anh đào cụ thể có thể được nhìn thấy ở khu vực Kawazu nằm trên bán đảo Izu thuộc tỉnh Shizuoka. Nó được biết đến như một loài hoa anh đào nở sớm, và những bông hoa xinh đẹp của nó bắt đầu nở từ đầu tháng 2. Hoa có cánh hoa lớn có màu hồng đậm.</p>
+            <p><img src="image/kawajisakura.png" alt="kawajisakura" ></p>
+            <p>
+              河津川沿いでは、毎年2月上旬から3月上旬にかけて河津桜まつりが開催され、何百万人もの観光客が訪れます。川沿いに約800本の桜が咲き誇る人気イベントがあります。
+            </p>
+            <p>
+              Website:&nbsp; <a href="http://kawazuzakura.info/">http://kawazuzakura.info/</a>
+            </p>
+            <p>&nbsp;</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-popup" id="myForm">
+    <form action="#" class="form-container">
+      <h1>Contact</h1>
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Name" name="name" required>
+
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+
+      <label for="comment"><b>Comment</b></label>
+      <input type="text" placeholder="Comment" name="Comment" required>
+
+
+
+      <button type="submit" class="btn">Send</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+
+  <script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        document.getElementById("navbar").style.padding = "30px 10px";
+        document.getElementById("logo").style.fontSize = "25px";
+      } else {
+        document.getElementById("navbar").style.padding = "80px 10px";
+        document.getElementById("logo").style.fontSize = "35px";
+      }
+    }
+
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+
+    function openTypeHeader(cityName, elmnt, color, image) {
+      // Hide all elements with class="tabcontent" by default */
+      var i, tabcontent, tablinks, headerurl;
+      tabcontent = document.getElementsByClassName("tabcontent");
+
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Remove the background color of all tablinks/buttons
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.color = "#ffffff";
+      }
+
+      // Show the specific tab content
+      document.getElementById(cityName).style.display = "block";
+
+      // Add the specific color to the button used to open the tab content
+      elmnt.style.backgroundColor = color;
+      elmnt.style.color = "#000000";
+
+      //change background
+      document.getElementById("navbar").style.backgroundImage = image;
+    }
+
+    function openPage(pageName, elmnt, color) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabbodycontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tabbodylink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+      document.getElementById("bodyselect").style.backgroundColor = color;
+      elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+  </script>
+
+</body>
+
+</html>
